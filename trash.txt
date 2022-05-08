@@ -1,0 +1,17 @@
+self.relative_down = pygame.Vector2(self.game.asteroid.rect.centery - self.rect.centery, self.game.asteroid.rect.centerx - self.rect.centerx).normalize()
+
+        self.relative_up = pygame.Vector2(self.real_center[1] - self.game.asteroid.rect.centery,
+                                          self.real_center[0] - self.game.asteroid.rect.centerx).normalize()
+        self.relative_down = pygame.Vector2(self.game.asteroid.rect.centery - self.real_center[1],
+                                            self.game.asteroid.rect.centerx - self.real_center[0]).normalize()
+
+
+        while 1340 < self.game.distance_p_a() < 1350:
+            self.real_center[0], self.real_center[1] = (self.real_center[0] + self.relative_down[0]), (
+                    self.real_center[1] + self.relative_down[1])
+        print("done")
+
+
+                self.relative_right[0], self.relative_right[1] = self.relative_down[1], self.relative_down[0]
+
+        self.relative_left[0], self.relative_left[1] = self.relative_up[1], self.relative_up[0]
