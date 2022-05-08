@@ -15,3 +15,16 @@ self.relative_down = pygame.Vector2(self.game.asteroid.rect.centery - self.rect.
                 self.relative_right[0], self.relative_right[1] = self.relative_down[1], self.relative_down[0]
 
         self.relative_left[0], self.relative_left[1] = self.relative_up[1], self.relative_up[0]
+
+
+
+
+        self.relative_up = pygame.Vector2(self.real_center[0] - self.game.asteroid.rect.centerx,
+                                          self.real_center[1] - self.game.asteroid.rect.centery).normalize()
+
+        self.relative_down = pygame.Vector2(self.game.asteroid.rect.centerx - self.real_center[0],
+                                            self.game.asteroid.rect.centery - self.real_center[1]).normalize()
+
+        self.relative_right[0], self.relative_right[1] = self.relative_down[1], self.relative_down[0]
+
+        self.relative_left[0], self.relative_left[1] = self.relative_up[1], self.relative_up[0]
