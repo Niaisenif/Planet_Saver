@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.relative_up = [0, -1]
         self.relative_down = [0, 1]
 
-    def angle(self):
+    def angle_(self):
         self.angle = math.degrees(math.atan2(- self.rect.centery + self.game.asteroid.rect.centery,
                                              self.rect.centerx - self.game.asteroid.rect.centerx)) - 90
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
@@ -47,7 +47,7 @@ class Player(pygame.sprite.Sprite):
             self.relative_right = [s, c]
             self.relative_left = [-s, -c]
 
-        if 111 > self.game.get_distance_p_a() > 110:
+        """if 111 > self.game.get_distance_p_a() > 110:
             while self.game.get_distance_p_a() > 110:
                 self.real_center[0], self.real_center[1] = (self.real_center[0] + 0.01 * self.relative_down[0]), (
                         self.real_center[1] + 0.01 * self.relative_down[1])
@@ -56,15 +56,15 @@ class Player(pygame.sprite.Sprite):
             while self.game.get_distance_p_a() > 111 and i < 10:
                 self.real_center[0], self.real_center[1] = (self.real_center[0] + 1 * self.relative_down[0]), (
                         self.real_center[1] + 1 * self.relative_down[1])
-                i += 1
+                i += 1"""
 
     def move_left(self):
-        self.real_center[0], self.real_center[1] = (self.real_center[0] + 10 * self.relative_left[0]), (
-                self.real_center[1] + 10 * self.relative_left[1])
+        self.real_center[0], self.real_center[1] = (self.real_center[0] + 10 * self.relative_left[0] + self.get_fix_coeff() * self.relative_down[0]), (
+                self.real_center[1] + 10 * self.relative_left[1] + self.get_fix_coeff() * self.relative_down[1])
 
     def move_right(self):
-        self.real_center[0], self.real_center[1] = (self.real_center[0] + 10 * self.relative_right[0]), (
-                self.real_center[1] + 10 * self.relative_right[1])
+        self.real_center[0], self.real_center[1] = (self.real_center[0] + 10 * self.relative_right[0] + self.get_fix_coeff() * self.relative_down[0]), (
+                self.real_center[1] + 10 * self.relative_right[1] + self.get_fix_coeff() * self.relative_down[1])
 
     def move_down(self):
         self.real_center[0], self.real_center[1] = (self.real_center[0] + 10 * self.relative_down[0]), (
@@ -77,5 +77,8 @@ class Player(pygame.sprite.Sprite):
     def fix_coordinates(self):
         self.rect.centerx, self.rect.centery = round(self.real_center[0]), round(self.real_center[1])
 
+    def get_fix_coeff(self):
+        """Only really work to some extent, trained eye will see the difference. Although it should not be a problem I think"""
+        return 149.387 / self.game.get_distance_p_a()
 
 

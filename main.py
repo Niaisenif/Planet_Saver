@@ -6,7 +6,7 @@ screen = pygame.display.set_mode((1000, 1000))
 pygame.display.init()
 
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 600
 game = Game(screen)
 running = True
 
@@ -29,7 +29,10 @@ while running:
     for event in pygame.event.get():
 
         if event.type == pygame.KEYDOWN:
-            game.pressed[event.key] = True
+            if event.key == pygame.K_SPACE:
+                game.get_moy()
+            else:
+                game.pressed[event.key] = True
 
         if event.type == pygame.KEYUP:
             game.pressed[event.key] = False
