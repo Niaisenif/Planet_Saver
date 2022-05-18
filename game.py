@@ -5,6 +5,7 @@ from asteroid import Asteroid
 
 class Game:
     def __init__(self, screen):
+        self.on = False
         self.screen = screen
         self.pressed = {}
         self.player = Player(self)

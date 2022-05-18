@@ -1,0 +1,14 @@
+To-Do:
+ -Menus
+ -Loading/Saving
+ -Mechanics
+    -Ressources
+        -Gathering
+        -Inventory
+        -Uses
+    -Planets
+        -weight
+        -integrity
+        -more values
+        -wildlife ?
+ -Levels
