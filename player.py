@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, game):
         super().__init__()
         self.game = game
-        self.origin_image = pygame.image.load("assets/player.png")
+        self.origin_image = pygame.image.load("assets/player/still.png")
         self.origin_image = pygame.transform.scale(self.origin_image, (60, 80))
         self.image = self.origin_image
         self.rect = self.image.get_rect()

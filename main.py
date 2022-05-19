@@ -4,10 +4,9 @@ from menus import MenuLoader
 pygame.init()
 
 screen = pygame.display.set_mode((1000, 1000))
-pygame.display.init()
 
 clock = pygame.time.Clock()
-FPS = 600
+FPS = 60
 game = Game(screen)
 ML = MenuLoader()
 ML.load_menu("main")
@@ -41,9 +40,13 @@ while running:
             if event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
 
-            if event.type == pygame.QUIT:
-                running = False
-                pygame.quit
+    for event in pygame.event.get():
+        if event == pygame.QUIT:
+            running = False
+            pygame.quit()
+
     ML.button_list.draw(screen)
+    ML.update_all_buttons()
+
     pygame.display.flip()
     clock.tick(FPS)
